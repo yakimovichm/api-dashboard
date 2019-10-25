@@ -1,0 +1,15 @@
+@import "~@angular/material/theming";
+
+.mat-card {
+  @include mat-elevation(3);
+}
+
+#wm-header {
+  h3 {
+    margin-top: 0;
+  }
+}
+
+#wm-page-panel {
+  height: calc(100vh - 300px);
+}

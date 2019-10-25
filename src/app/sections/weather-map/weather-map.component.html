@@ -1,0 +1,56 @@
+<app-page-panel>
+    <app-page-card [navigation]="{layout:'row-reverse', routerLink:['/'], text:'Back', icon:'arrow_forward'}">
+       
+        <div fxLayout="column" fxLayoutGap="10px">
+
+            <mat-card id="wm-header" fxLayout="row" fxLayoutAlign="center center">
+                <div fxFlex="100%">
+                    <h3>Weather map</h3>
+                    Here you can click on map to see the weather
+                </div>
+                <dx-radio-group 
+                    [items]="measuringUnits"
+                    [(value)]="selectedMeasuringUnit" 
+                    valueExpr="units"
+                    displayExpr="text">
+                </dx-radio-group>
+            </mat-card>
+
+            <div id="wm-page-panel" fxLayout="row" fxLayoutGap="15px">
+                <mat-card fxFlex="70%">
+                    <dx-map 
+                        [width]="'100%'" 
+                        [height]="'100%'" 
+                        [controls]="true" 
+                        provider="bing" 
+                        [key]="mapKey"
+                        (onClick)="mapClick($event)">
+                    </dx-map>
+                </mat-card>
+                <mat-card fxFlex="30%">
+                    <ng-container *ngIf="weatherData">
+                        <p>{{weatherData.weather[0].main}}</p>
+                        <img src="http://openweathermap.org/img/wn/{{weatherData.weather[0].icon}}@2x.png" alt="picture">
+                        <p>Temperature: {{weatherData.main.temp}}</p>
+                        <p>Wind speed: {{weatherData.wind.speed}}</p>
+                        <div *ngIf="weatherData.name">
+                            <p>Country: {{weatherData.sys.country}}</p>
+                            <p>Region: {{weatherData.name}}</p>
+                        </div>
+                    </ng-container>
+                </mat-card>
+            </div>
+
+            <dx-load-panel 
+                shadingColor="rgba(0,0,0,0.4)" 
+                [position]="{ of: '#wm-page-panel' }"
+                [visible]="isLoading | async" 
+                [showIndicator]="true" 
+                [showPane]="true" 
+                [shading]="true">
+            </dx-load-panel>
+
+        </div>
+
+    </app-page-card>
+</app-page-panel>

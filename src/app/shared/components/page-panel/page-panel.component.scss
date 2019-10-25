@@ -1,0 +1,10 @@
+@import "~@angular/material/theming";
+@import "../../theme/constants.scss";
+
+.page-panel {
+  @include mat-elevation(8);
+  display: flex;
+  height: calc(100vh - #{$header-max-height} - 70px);
+  background: rgba(0, 0, 0, 0.4);
+  padding: $component-margin * 2;
+}

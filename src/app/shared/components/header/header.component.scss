@@ -1,0 +1,11 @@
+@import "~@angular/material/theming";
+@import "../../theme/constants.scss";
+
+.header {
+  @include mat-elevation(8);
+  max-height: $header-max-height;
+  margin-bottom: $component-margin;
+  background: rgba(0, 137, 123, 0.7);
+  color: white;
+  text-align: center;
+}

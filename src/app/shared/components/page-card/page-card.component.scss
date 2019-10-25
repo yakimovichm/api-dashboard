@@ -1,0 +1,31 @@
+@import "~@angular/material/theming";
+@import "../../theme/constants.scss";
+
+:host {
+  width: 100vw;
+}
+
+:host:nth-child(even) {
+  margin-left: 20px;
+}
+
+.page-card {
+  @include mat-elevation(5);
+  background: rgba(255, 255, 255, 0.4);
+  height: 100%;
+  .nav-card-actions {
+    button {
+      white-space: pre-wrap;
+      background: rgba(255, 255, 255, 0.6);
+    }
+  }
+  .nav-card-content {
+    @include mat-elevation(3);
+    text-align: center;
+  }
+  .nav-card-content .mat-card {
+    &:hover {
+      @include mat-elevation(8);
+    }
+  }
+}

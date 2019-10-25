@@ -1,0 +1,86 @@
+<app-page-panel>
+    <app-page-card [navigation]="{layout:'row', routerLink:['/'], text:'Back', icon:'arrow_back'}">
+
+        <div fxLayout="column" fxLayoutGap="10px">
+
+                <mat-card id="n-header" fxLayout="row" fxLayoutAlign="center center">
+                    <div fxFlex="100%">
+                        <h3>News articles</h3>
+                        Here you can search for news articles at various languages and news agencies
+                    </div>
+                </mat-card>
+    
+                <div id="n-page-panel" fxLayout="row" fxLayoutGap="15px">
+                    <mat-card fxFlex="100%">
+                        <dx-list 
+                            [items]="articles"
+                            noDataText=""
+                            height="100%"
+                            showScrollbar="always">
+                            <div class="article" *dxTemplate="let article of 'item'">
+                                <mat-card>
+                                    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px">
+                                        <mat-card *ngIf="article.urlToImage" class="img-card" fxFlex="200px">
+                                            <img src="{{article.urlToImage}}" alt="picture">
+                                        </mat-card>
+                                        <div fxFlex="100%">
+                                            <h3>{{article.title}}</h3>
+                                            <p>{{article.description}}</p>
+                                            <div fxLayout="row" fxLayoutAlign="center center">
+                                                <div fxFlex="100%" fxFlexAlign="center">
+                                                    <p>Published at: {{article.publishedAt | date:'dd.MM.yyyy HH:mm'}}</p>
+                                                </div>
+                                                <p><a target="_blank" href="{{article.url}}" mat-raised-button>Details</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </mat-card>
+                            </div>
+                        </dx-list>
+                    </mat-card>
+                    <mat-card fxLayout="column" fxFlex="300px">
+                        <div fxLayout="column" fxLayoutGap="10px" fxFlex="100%">
+                            
+                            Language:
+                            <dx-select-box 
+                                [dataSource]="languages" 
+                                stylingMode="outlined" 
+                                [(value)]="selectedLanguage" 
+                                valueExpr="code"
+                                displayExpr="text">
+    
+                            </dx-select-box>
+
+                            Agencies:
+                            <dx-tag-box 
+                                [dataSource]="sources | async"
+                                stylingMode="outlined"
+                                [width]="'100%'"
+                                [(value)]="selectedSources"
+                                valueExpr="id"
+                                displayExpr="name"
+                                [showSelectionControls]="true"
+                                selectAllMode="allPages"
+                                [maxDisplayedTags]="1"
+                                [showDropDownButton]="true">
+                            </dx-tag-box>
+                        </div>
+                        <button mat-raised-button (click)="searchClick()">
+                            Search
+                        </button>
+                    </mat-card>
+                </div>
+    
+                <dx-load-panel 
+                    shadingColor="rgba(0,0,0,0.4)" 
+                    [position]="{ of: '#n-page-panel' }"
+                    [visible]="isLoading | async" 
+                    [showIndicator]="true" 
+                    [showPane]="true" 
+                    [shading]="true">
+                </dx-load-panel>
+    
+            </div>
+
+    </app-page-card>
+</app-page-panel>

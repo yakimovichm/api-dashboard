@@ -1,0 +1,36 @@
+<app-page-panel>
+    <app-page-card [navigation]="{layout:'row', routerLink:['/weather-map'], text:'Try', icon:'arrow_back'}">
+        
+        <div fxLayout="column" fxLayoutAlign="center center">
+            <h3>Weather / map API</h3>
+            <p>A demo of Bing Maps and OpenWeather API combined to reach interactive weather map experience</p>
+            <dx-gallery 
+                [dataSource]="images.weatherMap"
+                height="100%"
+                [slideshowDelay]="2500"
+                [animationDuration]="1500"
+                [loop]="true"
+                [showNavButtons]="true" 
+                [showIndicator]="true">
+            </dx-gallery>
+        </div>
+
+    </app-page-card>
+    <app-page-card [navigation]="{layout:'row-reverse', routerLink:['/news'], text:'Try', icon:'arrow_forward'}">
+
+        <div fxLayout="column" fxLayoutAlign="center center">
+            <h3>News API</h3>
+            <p>A simple view for news articles obtained from News API</p>
+            <dx-gallery 
+                [dataSource]="images.news" 
+                height="100%"
+                [slideshowDelay]="3000"
+                [animationDuration]="1500"
+                [loop]="true"
+                [showNavButtons]="true" 
+                [showIndicator]="true">
+            </dx-gallery>
+        </div>
+        
+    </app-page-card>
+</app-page-panel>

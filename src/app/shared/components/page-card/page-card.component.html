@@ -1,0 +1,16 @@
+<mat-card class="page-card" [fxLayout]="navigation.layout" fxLayoutGap="10px">
+
+    <div class="nav-card-actions" fxFlex="60px" fxFlexAlign="center">
+        <button mat-raised-button [routerLink]="navigation.routerLink">
+            <mat-icon>{{navigation.icon}}</mat-icon>
+            {{navigation.text}}
+        </button>
+    </div>
+    
+    <mat-card class="nav-card-content" fxFlex="100%">
+        <ng-content>
+
+        </ng-content>
+    </mat-card>
+
+</mat-card>

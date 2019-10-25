@@ -1,0 +1,9 @@
+@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+@import "./app/shared/theme/constants";
+
+body {
+  margin: $component-margin;
+  background-image: url(assets/images/bg.jpg);
+  background-size: 100%;
+}
